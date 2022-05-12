@@ -1,5 +1,9 @@
 https://youtu.be/AcbzhJoQ-OY?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK
 
+https://github.com/stylehosting/example-spring
+
+<hr/>
+
 devtools
 lombok
 spring configuration processor
