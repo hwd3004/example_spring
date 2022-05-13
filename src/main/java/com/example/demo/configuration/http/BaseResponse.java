@@ -14,4 +14,9 @@ public class BaseResponse<T> {
 		this.data = data;
 	}
 
+	public BaseResponse(BaseResponseCode code, String message) {
+		this.code = code;
+		this.message = message;
+	}
+
 }
