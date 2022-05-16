@@ -1,6 +1,6 @@
 https://youtu.be/AcbzhJoQ-OY?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK
 
-https://youtu.be/WWZfsbJMXGo?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK&t=68
+https://youtu.be/as5m6DJ1rWA?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK&t=180
 
 https://github.com/stylehosting/example-spring
 
@@ -37,3 +37,9 @@ spring web
 ```
 
 스웨거 사용을 위해 스프링 부트 버전을 2.5.13으로 변경
+
+<hr/>
+
+```sql
+ALTER TABLE `t_board` ADD COLUMN `board_type` VARCHAR(10) NULL DEFAULT NULL AFTER `title`;
+```

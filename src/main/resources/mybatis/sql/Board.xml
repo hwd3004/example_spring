@@ -6,7 +6,7 @@
 	<select id="getList" parameterType="com.example.demo.mvc.domain.Board"
 		resultType="com.example.demo.mvc.domain.Board">
 
-		SELECT B.BOARD_SEQ, B.TITLE, B.CONTENTS, B.REG_DATE FROM T_BOARD B ORDER BY B.REG_DATE DESC
+		SELECT B.BOARD_SEQ, B.TITLE, B.CONTENTS, B.REG_DATE, B.BOARD_TYPE FROM T_BOARD B ORDER BY B.REG_DATE DESC
 	</select>
 
 	<select id="get" parameterType="int" resultType="com.example.demo.mvc.domain.Board">
@@ -19,16 +19,27 @@
 	<!-- keyProperty="boardSeq"> -->
 	<insert id="save" parameterType="com.example.demo.mvc.parameter.BoardParameter" useGeneratedKeys="true"
 		keyProperty="boardSeq">
-		INSERT INTO T_BOARD (TITLE, CONTENTS, REG_DATE) VALUES (#{title}, #{contents},
-		NOW())
+		INSERT INTO T_BOARD (TITLE, CONTENTS, REG_DATE, BOARD_TYPE) VALUES (#{title}, #{contents}, NOW(), #{boardType.code})
 	</insert>
 
 	<update id="update" parameterType="com.example.demo.mvc.domain.Board">
-		UPDATE T_BOARD SET TITLE = #{title}, CONTENTS = #{contents} WHERE BOARD_SEQ =
-		#{boardSeq}
+		UPDATE T_BOARD SET TITLE = #{title}, CONTENTS = #{contents}, board_type = #{boardType.code} WHERE BOARD_SEQ = #{boardSeq}
 	</update>
 
 	<delete id="delete" parameterType="int">
 		DELETE FROM T_BOARD WHERE BOARD_SEQ = #{boardSeq}
 	</delete>
+
+
+	<insert id="saveList" parameterType="map">
+		insert into t_board ( title, contents, reg_date ) values
+		
+<!-- 		mybatis 문법 -->
+<!-- 			parameterType="map"에 담길 키 이름으로 boardList -->
+		<foreach collection="boardList" item="board" separator=",">
+			(
+			#{board.title},#{board.contents},NOW()
+			)
+		</foreach>
+	</insert>
 </mapper>
