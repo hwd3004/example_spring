@@ -18,14 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.configuration.exception.BaseException;
 import com.example.demo.configuration.http.BaseResponse;
 import com.example.demo.configuration.http.BaseResponseCode;
+import com.example.demo.framework.data.domain.MySQLPageRequest;
+import com.example.demo.framework.data.domain.PageRequestParameter;
+import com.example.demo.framework.data.web.bind.domain.RequestConfig;
 import com.example.demo.mvc.domain.Board;
 import com.example.demo.mvc.parameter.BoardParameter;
+import com.example.demo.mvc.parameter.BoardSearchParameter;
 import com.example.demo.mvc.service.BoardService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/board")
@@ -39,8 +44,15 @@ public class BoardController {
 
 	@GetMapping
 	@ApiOperation(value = "목록 조회", notes = "게시물 목록 정보를 조회할 수 있습니다.")
-	public BaseResponse<List<Board>> getList() {
-		return new BaseResponse<List<Board>>(boardService.getList());
+	public BaseResponse<List<Board>> getList(@ApiParam BoardSearchParameter parameter,
+			@ApiParam MySQLPageRequest pageRequest) {
+
+		logger.info("pageRequest : {}", pageRequest);
+
+		PageRequestParameter<BoardSearchParameter> pageRequestParameter = new PageRequestParameter<>(pageRequest,
+				parameter);
+
+		return new BaseResponse<List<Board>>(boardService.getList(pageRequestParameter));
 	}
 
 	@GetMapping("/{boardSeq}")
@@ -59,6 +71,7 @@ public class BoardController {
 //	등록, 수정
 	@SuppressWarnings("deprecation")
 	@PutMapping("/save")
+	@RequestConfig
 	@ApiOperation(value = "등록 / 수정 처리", notes = "신규 게시물 저장 및 기존 게시물 업데이트가 가능합니다.")
 	@ApiImplicitParams({ @ApiImplicitParam(name = "boardSeq", value = "게시물 번호", example = "1"),
 			@ApiImplicitParam(name = "title", value = "제목", example = "스프링"),
@@ -79,6 +92,7 @@ public class BoardController {
 	}
 
 	@DeleteMapping("/{boardSeq}")
+	@RequestConfig
 	@ApiOperation(value = "삭제 처리", notes = "신규 게시물 저장 및 기존 게시물 업데이트가 가능합니다.")
 	@ApiImplicitParams({ @ApiImplicitParam(name = "boardSeq", value = "게시물 번호", example = "1") })
 	public BaseResponse<Boolean> delete(@PathVariable int boardSeq) {

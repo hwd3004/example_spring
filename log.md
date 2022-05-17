@@ -1,6 +1,6 @@
 https://youtu.be/AcbzhJoQ-OY?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK
 
-https://youtu.be/as5m6DJ1rWA?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK&t=271
+https://youtu.be/1ux6NwWms8c?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK
 
 https://github.com/stylehosting/example-spring
 
