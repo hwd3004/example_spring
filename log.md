@@ -4,6 +4,8 @@ https://youtu.be/1ux6NwWms8c?list=PLljhOa5uVB3GKTm_0Y0jiFU9lkPgtjLxK
 
 https://github.com/stylehosting/example-spring
 
+http://localhost:9000/swagger-ui.html
+
 <hr/>
 
 devtools
